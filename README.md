@@ -1,29 +1,36 @@
-# Book My Stay App – Use Case 5: Booking Request Queue (FIFO)
+# Book My Stay App – Use Case 6: Reservation Confirmation & Room Allocation
 
 ## 📌 Overview
-This module introduces a **Booking Request Queue** to handle multiple guest booking requests fairly using the **FIFO (First-Come-First-Served)** principle.
+This module introduces the **final step in the booking pipeline** — confirming reservations and allocating rooms safely.
 
-It ensures that booking requests are processed in the exact order they are received.
+It integrates:
+- Booking Request Queue (Use Case 5)
+- Centralized Inventory (Use Case 3)
+- Controlled Allocation Logic
+
+The system ensures **no double-booking** and maintains **consistent inventory state**.
 
 ---
 
 ## 🎯 Use Case Goal
-- Accept booking requests from guests
-- Store them in order of arrival
-- Ensure fairness in request handling
-- Prepare for later allocation (no inventory updates yet)
+
+- Process booking requests in FIFO order
+- Assign a unique room ID to each reservation
+- Prevent duplicate room allocation
+- Update inventory immediately after booking
+- Ensure complete system consistency
 
 ---
 
 ## 🧩 Key Concepts
 
-### 1. Problem of Simultaneous Requests
-Multiple users may request bookings at the same time:
-- Without ordering → unfair processing
-- Leads to inconsistent booking outcomes
+### 1. Problem of Double Booking
+Without safeguards:
+- Same room may be assigned multiple times
+- Leads to conflicts and invalid reservations
 
 ---
 
-### 2. Queue Data Structure
+### 2. Set for Uniqueness
 ```java
-Queue<Reservation>
+Set<String>
