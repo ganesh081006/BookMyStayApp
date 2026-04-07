@@ -1,33 +1,33 @@
-# Book My Stay App – Use Case 7: Add-On Service Selection
+# Book My Stay App – Use Case 8: Booking History & Reporting
 
 ## 📌 Overview
-This module extends the booking system to support **optional add-on services** such as:
-- Breakfast
-- Spa Access
-- Airport Pickup
+This module introduces **historical tracking of bookings** and **report generation**.
 
-It demonstrates how to add real-world business features **without modifying core booking or inventory logic**.
+It allows administrators to:
+- View past reservations
+- Analyze booking trends
+- Generate summary reports
 
 ---
 
 ## 🎯 Use Case Goal
 
-- Allow guests to select additional services
-- Attach multiple services to a reservation
-- Calculate total additional cost
-- Keep booking and inventory logic unchanged
+- Store confirmed bookings
+- Maintain chronological order
+- Provide retrieval of booking data
+- Generate reports without modifying data
 
 ---
 
 ## 🧩 Key Concepts
 
-### 1. Business Extensibility
-- New features are added without modifying core booking system
-- Follows open/closed principle
+### 1. Operational Visibility
+- Enables admins to review past bookings
+- Supports auditing and debugging
 
 ---
 
-### 2. One-to-Many Relationship
+### 2. List Data Structure
 
 ```java
-Map<String, List<AddOnService>>
+List<Reservation>
