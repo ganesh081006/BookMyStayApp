@@ -1,34 +1,25 @@
-# Book My Stay App - Use Case 1
+# Book My Stay App – Use Case 3 (Version 3.1)
 
 ## 📌 Overview
-This project demonstrates the basic structure of a Java application using a Hotel Booking Management System as context.
+This module demonstrates **Centralized Room Inventory Management** using Core Java and HashMap.
 
-Use Case 1 focuses on:
-- Application entry point
-- Console output
-- Basic Java syntax and structure
+The goal is to replace scattered availability variables with a **single source of truth**, improving consistency, scalability, and maintainability.
 
 ---
 
-## 🎯 Objective
-To establish a clear and predictable starting point for the application by:
-- Implementing the `main()` method
-- Printing a welcome message
-- Displaying application name and version
+## 🎯 Use Case Goal
+Introduce centralized inventory management by using a `HashMap<String, Integer>` to manage room availability.
 
 ---
 
-## 🧠 Concepts Covered
+## 🧩 Key Concepts
 
-- Class definition
-- main() method (JVM entry point)
-- static keyword
-- Console output using `System.out.println()`
-- String literals
-- Method invocation
-- Linear execution flow
-- JavaDoc comments and annotations
+### 1. Problem of Scattered State
+Previous implementations used separate variables:
+- Hard to maintain
+- Error-prone
+- Not scalable
 
----
-
-## 📂 File Structure
+### 2. HashMap Usage
+```java
+HashMap<String, Integer>
