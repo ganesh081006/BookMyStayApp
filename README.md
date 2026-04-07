@@ -1,34 +1,33 @@
-# Book My Stay App - Use Case 1
+# Book My Stay App – Use Case 7: Add-On Service Selection
 
 ## 📌 Overview
-This project demonstrates the basic structure of a Java application using a Hotel Booking Management System as context.
+This module extends the booking system to support **optional add-on services** such as:
+- Breakfast
+- Spa Access
+- Airport Pickup
 
-Use Case 1 focuses on:
-- Application entry point
-- Console output
-- Basic Java syntax and structure
-
----
-
-## 🎯 Objective
-To establish a clear and predictable starting point for the application by:
-- Implementing the `main()` method
-- Printing a welcome message
-- Displaying application name and version
+It demonstrates how to add real-world business features **without modifying core booking or inventory logic**.
 
 ---
 
-## 🧠 Concepts Covered
+## 🎯 Use Case Goal
 
-- Class definition
-- main() method (JVM entry point)
-- static keyword
-- Console output using `System.out.println()`
-- String literals
-- Method invocation
-- Linear execution flow
-- JavaDoc comments and annotations
+- Allow guests to select additional services
+- Attach multiple services to a reservation
+- Calculate total additional cost
+- Keep booking and inventory logic unchanged
 
 ---
 
-## 📂 File Structure
+## 🧩 Key Concepts
+
+### 1. Business Extensibility
+- New features are added without modifying core booking system
+- Follows open/closed principle
+
+---
+
+### 2. One-to-Many Relationship
+
+```java
+Map<String, List<AddOnService>>
