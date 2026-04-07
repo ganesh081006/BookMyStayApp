@@ -1,33 +1,33 @@
-# Book My Stay App – Use Case 8: Booking History & Reporting
+# Book My Stay App – Use Case 9: Error Handling & Validation
 
 ## 📌 Overview
-This module introduces **historical tracking of bookings** and **report generation**.
+This module strengthens system reliability by introducing:
+- Input validation
+- Custom exceptions
+- Fail-fast error handling
 
-It allows administrators to:
-- View past reservations
-- Analyze booking trends
-- Generate summary reports
+It ensures that invalid inputs are caught early and do not corrupt system state.
 
 ---
 
 ## 🎯 Use Case Goal
 
-- Store confirmed bookings
-- Maintain chronological order
-- Provide retrieval of booking data
-- Generate reports without modifying data
+- Validate booking inputs before processing
+- Prevent invalid inventory updates
+- Handle errors gracefully
+- Maintain system stability
 
 ---
 
 ## 🧩 Key Concepts
 
-### 1. Operational Visibility
-- Enables admins to review past bookings
-- Supports auditing and debugging
+### 1. Input Validation
+- Ensures correct data before processing
+- Prevents invalid state
 
 ---
 
-### 2. List Data Structure
+### 2. Custom Exceptions
 
 ```java
-List<Reservation>
+class InvalidBookingException extends Exception
