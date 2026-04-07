@@ -1,36 +1,33 @@
-# Book My Stay App – Use Case 6: Reservation Confirmation & Room Allocation
+# Book My Stay App – Use Case 7: Add-On Service Selection
 
 ## 📌 Overview
-This module introduces the **final step in the booking pipeline** — confirming reservations and allocating rooms safely.
+This module extends the booking system to support **optional add-on services** such as:
+- Breakfast
+- Spa Access
+- Airport Pickup
 
-It integrates:
-- Booking Request Queue (Use Case 5)
-- Centralized Inventory (Use Case 3)
-- Controlled Allocation Logic
-
-The system ensures **no double-booking** and maintains **consistent inventory state**.
+It demonstrates how to add real-world business features **without modifying core booking or inventory logic**.
 
 ---
 
 ## 🎯 Use Case Goal
 
-- Process booking requests in FIFO order
-- Assign a unique room ID to each reservation
-- Prevent duplicate room allocation
-- Update inventory immediately after booking
-- Ensure complete system consistency
+- Allow guests to select additional services
+- Attach multiple services to a reservation
+- Calculate total additional cost
+- Keep booking and inventory logic unchanged
 
 ---
 
 ## 🧩 Key Concepts
 
-### 1. Problem of Double Booking
-Without safeguards:
-- Same room may be assigned multiple times
-- Leads to conflicts and invalid reservations
+### 1. Business Extensibility
+- New features are added without modifying core booking system
+- Follows open/closed principle
 
 ---
 
-### 2. Set for Uniqueness
+### 2. One-to-Many Relationship
+
 ```java
-Set<String>
+Map<String, List<AddOnService>>
