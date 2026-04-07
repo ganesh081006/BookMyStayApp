@@ -1,25 +1,23 @@
-# Book My Stay App – Use Case 3 (Version 3.1)
+# Book My Stay App – Use Case 4: Room Search & Availability Check
 
 ## 📌 Overview
-This module demonstrates **Centralized Room Inventory Management** using Core Java and HashMap.
+This module introduces a **read-only search system** that allows guests to view available rooms without modifying system state.
 
-The goal is to replace scattered availability variables with a **single source of truth**, improving consistency, scalability, and maintainability.
+It builds on Use Case 3 by clearly separating **read operations (search)** from **write operations (booking/inventory updates)**.
 
 ---
 
 ## 🎯 Use Case Goal
-Introduce centralized inventory management by using a `HashMap<String, Integer>` to manage room availability.
+Enable guests to:
+- View available room types
+- See pricing and amenities
+- Ensure no accidental modification of inventory
 
 ---
 
 ## 🧩 Key Concepts
 
-### 1. Problem of Scattered State
-Previous implementations used separate variables:
-- Hard to maintain
-- Error-prone
-- Not scalable
-
-### 2. HashMap Usage
+### 1. Read-Only Access
+Search operations only retrieve data:
 ```java
-HashMap<String, Integer>
+inventory.getAvailability(roomType);
