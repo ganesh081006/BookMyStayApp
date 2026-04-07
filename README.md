@@ -1,84 +1,84 @@
 # 📘 Book My Stay App
-## Use Case 10: Booking Cancellation & Inventory Rollback
+## Use Case 11: Concurrent Booking Simulation (Thread Safety)
 
 ---
 
 ## 📌 Overview
-This module implements the **Booking Cancellation feature** in the *Book My Stay App*. It ensures that when a booking is cancelled, all system state changes are safely reversed, maintaining **inventory consistency** and preventing issues like double-booking.
+This module demonstrates how **concurrent booking requests** can affect system consistency and how **synchronization ensures thread safety**.
 
-The implementation focuses on **core Java concepts and data structures**, emphasizing system behavior rather than UI.
+It simulates multiple users booking rooms simultaneously using **multi-threading in Java**, ensuring correct inventory updates without conflicts.
 
 ---
 
 ## 🎯 Objective
-To design a **safe and controlled cancellation system** that:
-- Validates booking requests
-- Reverses previous operations
-- Restores room availability
-- Maintains a consistent system state
+To:
+- Simulate concurrent booking requests
+- Prevent race conditions
+- Ensure thread-safe inventory updates
+- Maintain consistent system state
 
 ---
 
 ## 👤 Actors
-- **Guest** – Initiates cancellation request
-- **Cancellation Service** – Validates and performs rollback
+- **Multiple Guests** – Submit booking requests concurrently
+- **Booking Processor Threads** – Process requests in parallel
 
 ---
 
-## 🔄 Cancellation Flow
-1. Guest requests booking cancellation
-2. System validates booking existence
-3. Checks if booking is already cancelled
-4. Pushes room ID to rollback stack
-5. Restores inventory count
-6. Adds room back to available pool
-7. Updates booking status
-8. Confirms successful rollback
+## 🔄 Flow
+1. Multiple booking requests are added to a shared queue
+2. Multiple threads process requests simultaneously
+3. Threads access shared resources using synchronization
+4. Inventory is updated inside critical sections
+5. System ensures no double allocation occurs
 
 ---
 
 ## 🧠 Key Concepts Used
 
-### 1. State Reversal
-Cancelling a booking requires undoing previous operations without affecting system stability.
+### 1. Race Conditions
+Occurs when multiple threads modify shared data simultaneously, leading to unpredictable results.
 
-### 2. Stack Data Structure (LIFO)
-A **Stack** is used to track released room IDs.
-- Last-In-First-Out (LIFO)
-- Mimics real-world undo operations
+### 2. Thread Safety
+Ensures correct behavior when multiple threads access shared resources.
 
-### 3. Controlled Mutation
-Operations are executed in a strict order to avoid partial updates and inconsistencies.
+### 3. Shared Mutable State
+- Booking Queue
+- Inventory Map
 
-### 4. Inventory Restoration
-Room availability is updated immediately after cancellation to reflect real-time system state.
+Both are shared across threads and must be protected.
 
-### 5. Validation Logic
-Ensures:
-- Booking exists
-- Booking is active
-- Duplicate cancellations are prevented
+### 4. Critical Sections
+Code blocks that must not be executed by multiple threads at the same time.
+
+### 5. Synchronization
+Using `synchronized` ensures:
+- Only one thread accesses critical section at a time
+- Prevents data corruption
+
+### 6. Concurrency vs Parallelism
+Focus is on **correctness under concurrent execution**, not performance.
 
 ---
 
 ## ⚙️ Functional Requirements
-- Allow cancellation of confirmed bookings only
-- Validate booking before cancellation
-- Restore inventory accurately
-- Release room IDs back to pool
-- Prevent invalid or duplicate cancellations
+- Simulate multiple booking requests
+- Use shared queue and inventory
+- Ensure thread-safe updates
+- Prevent double booking
+- Maintain consistent system state
 
 ---
 
 ## 📊 Data Structures Used
-- **HashMap** → Store bookings and inventory
-- **Queue (LinkedList)** → Manage available rooms
-- **Stack** → Handle rollback operations
+- **Queue (LinkedList)** → Booking requests
+- **HashMap** → Inventory tracking
+- **Threads** → Concurrent execution
 
 ---
 
 ## ▶️ How to Compile and Run
 
 ```bash
-javac UseCase10BookingCancellation.java
-java UseCase10BookingCancellation
+javac UseCase11ConcurrentBookingSimulation.java
+java UseCase11ConcurrentBookingSimulation
