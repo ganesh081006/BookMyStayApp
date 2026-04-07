@@ -1,35 +1,66 @@
-/**
- * UseCase1HotelBookingApp
- *
- * This class represents the entry point for the Hotel Booking Management System.
- * It demonstrates how a Java application starts execution and displays output
- * to the console.
- *
- * The application prints a welcome message along with the system name and version.
- *
- * @author YourName
- * @version 1.0
- */
-public class UseCase1HotelBookingApp {
+import java.util.HashMap;
+import java.util.Map;
 
-    /**
-     * Main method - Entry point of the application.
-     * JVM starts execution from this method.
-     *
-     * @param args Command-line arguments (not used here)
-     */
-    public static void main(String[] args) {
+public class RoomInventory {
 
-        // Display welcome message
-        System.out.println("========================================");
-        System.out.println("   Welcome to Book My Stay Application  ");
-        System.out.println("========================================");
+    // Centralized storage for room availability
+    private HashMap<String, Integer> inventory;
 
-        // Display application details
-        System.out.println("Application Name : Hotel Booking System");
-        System.out.println("Version          : v1.0");
+    // Constructor to initialize inventory
+    public RoomInventory() {
+        inventory = new HashMap<>();
+    }
 
-        // Closing message
-        System.out.println("Application started successfully!");
+    // Register a room type with initial count
+    public void addRoomType(String roomType, int count) {
+        if (count < 0) {
+            System.out.println("Invalid room count for " + roomType);
+            return;
+        }
+        inventory.put(roomType, count);
+    }
+
+    // Get availability of a specific room type
+    public int getAvailability(String roomType) {
+        return inventory.getOrDefault(roomType, 0);
+    }
+
+    // Update room availability (controlled update)
+    public void updateAvailability(String roomType, int newCount) {
+        if (!inventory.containsKey(roomType)) {
+            System.out.println("Room type does not exist: " + roomType);
+            return;
+        }
+        if (newCount < 0) {
+            System.out.println("Invalid update value.");
+            return;
+        }
+        inventory.put(roomType, newCount);
+    }
+
+    // Book a room (reduce count safely)
+    public boolean bookRoom(String roomType) {
+        int available = getAvailability(roomType);
+
+        if (available > 0) {
+            inventory.put(roomType, available - 1);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Cancel a booking (increase count safely)
+    public void cancelBooking(String roomType) {
+        int available = getAvailability(roomType);
+        inventory.put(roomType, available + 1);
+    }
+
+    // Display full inventory
+    public void displayInventory() {
+        System.out.println("\nCurrent Room Inventory:");
+        for (Map.Entry<String, Integer> entry : inventory.entrySet()) {
+            System.out.println(entry.getKey() + " : " + entry.getValue());
+        }
     }
 }
